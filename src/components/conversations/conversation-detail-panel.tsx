@@ -572,6 +572,36 @@ const ConversationTabView = memo(function ConversationTabView({
     [connConnect, connDisconnect, workingDirForConnection]
   )
 
+  const handleAnswerQuestion = useCallback(
+    (answer: string) => {
+      if (connStatus !== "connected") return
+      const optimisticTurn: MessageTurn = {
+        id: `optimistic-${crypto.randomUUID()}`,
+        role: "user",
+        blocks: [{ type: "text", text: answer }],
+        timestamp: new Date().toISOString(),
+      }
+      appendOptimisticTurn(
+        effectiveConversationId,
+        optimisticTurn,
+        optimisticTurn.id
+      )
+      setSendSignal((prev) => prev + 1)
+      setSyncState(effectiveConversationId, "awaiting_persist")
+      lifecycleSend(
+        { blocks: [{ type: "text", text: answer }], displayText: answer },
+        null
+      )
+    },
+    [
+      appendOptimisticTurn,
+      connStatus,
+      effectiveConversationId,
+      lifecycleSend,
+      setSyncState,
+    ]
+  )
+
   const showDraftHeader = !hasPersistedConversation
   const isWelcomeMode = showDraftHeader && !hasSentMessage
 
@@ -596,10 +626,12 @@ const ConversationTabView = memo(function ConversationTabView({
       defaultPath={workingDirForConnection}
       error={conn.error}
       pendingPermission={conn.pendingPermission}
+      pendingQuestion={conn.pendingQuestion}
       onFocus={handleFocus}
       onSend={handleSend}
       onCancel={handleCancel}
       onRespondPermission={handleRespondPermission}
+      onAnswerQuestion={handleAnswerQuestion}
       modes={connectionModes}
       configOptions={connectionConfigOptions}
       modeLoading={modeLoading}

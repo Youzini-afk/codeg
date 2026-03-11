@@ -7,9 +7,13 @@ import type {
   SessionModeInfo,
   AvailableCommandInfo,
 } from "@/lib/types"
-import type { PendingPermission } from "@/contexts/acp-connections-context"
+import type {
+  PendingPermission,
+  PendingQuestion,
+} from "@/contexts/acp-connections-context"
 import { ChatInput } from "@/components/chat/chat-input"
 import { PermissionDialog } from "@/components/chat/permission-dialog"
+import { QuestionDialog } from "@/components/chat/question-dialog"
 
 interface ConversationShellProps {
   status: ConnectionStatus | null
@@ -17,10 +21,12 @@ interface ConversationShellProps {
   defaultPath?: string
   error: string | null
   pendingPermission: PendingPermission | null
+  pendingQuestion: PendingQuestion | null
   onFocus: () => void
   onSend: (draft: PromptDraft, modeId?: string | null) => void
   onCancel: () => void
   onRespondPermission: (requestId: string, optionId: string) => void
+  onAnswerQuestion: (answer: string) => void
   children: ReactNode
   modes?: SessionModeInfo[]
   configOptions?: SessionConfigOptionInfo[]
@@ -42,10 +48,12 @@ export function ConversationShell({
   defaultPath,
   error,
   pendingPermission,
+  pendingQuestion,
   onFocus,
   onSend,
   onCancel,
   onRespondPermission,
+  onAnswerQuestion,
   children,
   modes,
   configOptions,
@@ -68,6 +76,8 @@ export function ConversationShell({
         permission={pendingPermission}
         onRespond={onRespondPermission}
       />
+
+      <QuestionDialog question={pendingQuestion} onAnswer={onAnswerQuestion} />
 
       {!hideInput && (
         <ChatInput

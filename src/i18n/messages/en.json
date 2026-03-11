@@ -1175,6 +1175,11 @@
         "plan": "Plan",
         "targetMode": "Target mode: {mode}"
       },
+      "questionDialog": {
+        "title": "Agent is asking a question",
+        "placeholder": "Type your answer...",
+        "send": "Send"
+      },
       "messageBranch": {
         "previousBranchAria": "Previous branch",
         "nextBranchAria": "Next branch",

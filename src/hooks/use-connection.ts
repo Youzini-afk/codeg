@@ -8,6 +8,7 @@ import {
   type ConnectOptions,
   type LiveMessage,
   type PendingPermission,
+  type PendingQuestion,
 } from "@/contexts/acp-connections-context"
 import type {
   AgentType,
@@ -36,6 +37,7 @@ export interface UseConnectionReturn {
   availableCommands: AvailableCommandInfo[] | null
   liveMessage: LiveMessage | null
   pendingPermission: PendingPermission | null
+  pendingQuestion: PendingQuestion | null
   error: string | null
   connect: (
     agentType: AgentType,
@@ -81,6 +83,7 @@ export function useConnection(contextKey: string): UseConnectionReturn {
   const availableCommands = connection?.availableCommands ?? null
   const liveMessage = connection?.liveMessage ?? null
   const pendingPermission = connection?.pendingPermission ?? null
+  const pendingQuestion = connection?.pendingQuestion ?? null
   const error = connection?.error ?? null
 
   const connect = useCallback(
@@ -137,6 +140,7 @@ export function useConnection(contextKey: string): UseConnectionReturn {
       availableCommands,
       liveMessage,
       pendingPermission,
+      pendingQuestion,
       error,
       connect,
       disconnect,
@@ -157,6 +161,7 @@ export function useConnection(contextKey: string): UseConnectionReturn {
       availableCommands,
       liveMessage,
       pendingPermission,
+      pendingQuestion,
       error,
       connect,
       disconnect,

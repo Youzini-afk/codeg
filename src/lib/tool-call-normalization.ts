@@ -51,6 +51,8 @@ const EXACT_TOOL_NAME_ALIASES: Record<string, string> = {
   background_output: "task",
   slashcommand: "skill",
   question: "question",
+  ask_user_question: "question",
+  askuserquestion: "question",
   lsp_diagnostics: "lsp",
   lsp_document_symbols: "lsp",
   lsp_goto_definition: "lsp",
@@ -97,6 +99,7 @@ function inferFromFreeformName(input: string): string | null {
   if (/^taskcreate(?:\b|[_\s:-])/.test(normalized)) return "taskcreate"
   if (/^tasklist(?:\b|[_\s:-])/.test(normalized)) return "tasklist"
   if (/^task(?:\b|[_\s:-])/.test(normalized)) return "task"
+  if (/\bask\s*(?:user)?\s*question\b/.test(normalized)) return "question"
 
   return null
 }
@@ -180,6 +183,8 @@ function inferFromInput(
   const hasGlob = hasAnyKey(parsed, ["glob"])
   if (hasPattern) return hasGlob ? "glob" : "grep"
   if (hasGlob) return "glob"
+
+  if (hasAnyKey(parsed, ["question"])) return "question"
 
   if (hasAnyKey(parsed, ["subagent_type", "taskId", "task_id", "subject"])) {
     return "task"

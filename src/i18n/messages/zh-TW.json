@@ -1175,6 +1175,11 @@
         "plan": "計畫",
         "targetMode": "目標模式：{mode}"
       },
+      "questionDialog": {
+        "title": "代理正在提問",
+        "placeholder": "輸入你的回答...",
+        "send": "傳送"
+      },
       "messageBranch": {
         "previousBranchAria": "上一個分支",
         "nextBranchAria": "下一個分支",

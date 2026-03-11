@@ -12,6 +12,7 @@ import {
 import { useTranslations } from "next-intl"
 import { listen, type UnlistenFn } from "@tauri-apps/api/event"
 import { disposeTauriListener } from "@/lib/tauri-listener"
+import { inferLiveToolName } from "@/lib/tool-call-normalization"
 import {
   acpConnect,
   acpListAgents,
@@ -63,6 +64,11 @@ export interface PendingPermission {
   options: PermissionOptionInfo[]
 }
 
+export interface PendingQuestion {
+  tool_call_id: string
+  question: string
+}
+
 export type LiveContentBlock =
   | { type: "text"; text: string }
   | { type: "thinking"; text: string }
@@ -92,6 +98,7 @@ export interface ConnectionState {
   usage: SessionUsageUpdateInfo | null
   liveMessage: LiveMessage | null
   pendingPermission: PendingPermission | null
+  pendingQuestion: PendingQuestion | null
   error: string | null
 }
 
@@ -147,6 +154,12 @@ type Action =
       options: PermissionOptionInfo[]
     }
   | { type: "PERMISSION_CLEARED"; contextKey: string }
+  | {
+      type: "SET_PENDING_QUESTION"
+      contextKey: string
+      pendingQuestion: PendingQuestion
+    }
+  | { type: "CLEAR_PENDING_QUESTION"; contextKey: string }
   | { type: "SESSION_STARTED"; contextKey: string; sessionId: string }
   | {
       type: "SESSION_MODES"
@@ -255,6 +268,23 @@ function extractPermissionToolKind(toolCall: unknown): string | null {
     if (typeof candidate === "string" && candidate.trim().length > 0) {
       return candidate
     }
+  }
+  return null
+}
+
+function extractQuestionText(rawInput: string | null): string | null {
+  if (!rawInput) return null
+  try {
+    const parsed = JSON.parse(rawInput)
+    if (
+      parsed &&
+      typeof parsed === "object" &&
+      typeof parsed.question === "string"
+    ) {
+      return parsed.question
+    }
+  } catch {
+    // not JSON, try using rawInput as-is if it looks like a question
   }
   return null
 }
@@ -451,6 +481,7 @@ function connectionsReducer(
         usage: null,
         liveMessage: null,
         pendingPermission: null,
+        pendingQuestion: null,
         error: null,
       })
       return next
@@ -477,6 +508,7 @@ function connectionsReducer(
           content: [],
           startedAt: Date.now(),
         }
+        updated.pendingQuestion = null
         updated.error = null
       }
       next.set(action.contextKey, updated)
@@ -737,6 +769,28 @@ function connectionsReducer(
       next.set(action.contextKey, {
         ...conn,
         pendingPermission: null,
+      })
+      return next
+    }
+
+    case "SET_PENDING_QUESTION": {
+      const conn = state.get(action.contextKey)
+      if (!conn) return state
+      const next = new Map(state)
+      next.set(action.contextKey, {
+        ...conn,
+        pendingQuestion: action.pendingQuestion,
+      })
+      return next
+    }
+
+    case "CLEAR_PENDING_QUESTION": {
+      const conn = state.get(action.contextKey)
+      if (!conn) return state
+      const next = new Map(state)
+      next.set(action.contextKey, {
+        ...conn,
+        pendingQuestion: null,
       })
       return next
     }
@@ -1398,14 +1452,43 @@ export function AcpConnectionsProvider({ children }: { children: ReactNode }) {
             entries: e.entries,
           })
           break
-        case "turn_complete":
+        case "turn_complete": {
           flushStreamingQueue()
           dispatch({
             type: "STATUS_CHANGED",
             contextKey,
             status: "connected",
           })
+          // Detect pending question from tool calls in the completed turn
+          const turnConn = storeRef.current.connections.get(contextKey)
+          if (turnConn?.liveMessage) {
+            const blocks = turnConn.liveMessage.content
+            for (let i = blocks.length - 1; i >= 0; i--) {
+              const block = blocks[i]
+              if (block.type !== "tool_call") continue
+              const normalized = inferLiveToolName({
+                title: block.info.title,
+                kind: block.info.kind,
+                rawInput: block.info.raw_input,
+              })
+              if (normalized === "question") {
+                const questionText = extractQuestionText(block.info.raw_input)
+                if (questionText) {
+                  dispatch({
+                    type: "SET_PENDING_QUESTION",
+                    contextKey,
+                    pendingQuestion: {
+                      tool_call_id: block.info.tool_call_id,
+                      question: questionText,
+                    },
+                  })
+                }
+                break
+              }
+            }
+          }
           break
+        }
         case "error":
           flushStreamingQueue()
           dispatch({ type: "ERROR", contextKey, message: e.message })

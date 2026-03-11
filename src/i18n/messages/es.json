@@ -1175,6 +1175,11 @@
         "plan": "Plan de trabajo",
         "targetMode": "Modo objetivo: {mode}"
       },
+      "questionDialog": {
+        "title": "El agente está haciendo una pregunta",
+        "placeholder": "Escribe tu respuesta...",
+        "send": "Enviar"
+      },
       "messageBranch": {
         "previousBranchAria": "Rama anterior",
         "nextBranchAria": "Rama siguiente",

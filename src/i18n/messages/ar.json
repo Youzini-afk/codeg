@@ -1175,6 +1175,11 @@
         "plan": "الخطة",
         "targetMode": "وضع الهدف: {mode}"
       },
+      "questionDialog": {
+        "title": "الوكيل يطرح سؤالاً",
+        "placeholder": "اكتب إجابتك...",
+        "send": "إرسال"
+      },
       "messageBranch": {
         "previousBranchAria": "الفرع السابق",
         "nextBranchAria": "الفرع التالي",

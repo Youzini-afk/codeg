@@ -1175,6 +1175,11 @@
         "plan": "計画",
         "targetMode": "対象モード: {mode}"
       },
+      "questionDialog": {
+        "title": "エージェントが質問しています",
+        "placeholder": "回答を入力...",
+        "send": "送信"
+      },
       "messageBranch": {
         "previousBranchAria": "前のブランチ",
         "nextBranchAria": "次のブランチ",

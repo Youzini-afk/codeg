@@ -1175,6 +1175,11 @@
         "plan": "계획",
         "targetMode": "대상 모드: {mode}"
       },
+      "questionDialog": {
+        "title": "에이전트가 질문하고 있습니다",
+        "placeholder": "답변을 입력하세요...",
+        "send": "전송"
+      },
       "messageBranch": {
         "previousBranchAria": "이전 브랜치",
         "nextBranchAria": "다음 브랜치",
