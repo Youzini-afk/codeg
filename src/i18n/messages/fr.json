@@ -1185,9 +1185,9 @@
         "running": "En cours"
       },
       "reasoning": {
-        "thinking": "Réflexion...",
-        "thoughtForFewSeconds": "A réfléchi pendant quelques secondes",
-        "thoughtForSeconds": "A réfléchi pendant {duration} secondes"
+        "thinking": "Réflexion",
+        "thoughtForFewSeconds": "Réflexion",
+        "thoughtForSeconds": "Réflexion"
       },
       "messageList": {
         "attachedResources": "Ressources jointes",

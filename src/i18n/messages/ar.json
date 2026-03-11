@@ -1185,9 +1185,9 @@
         "running": "قيد التشغيل"
       },
       "reasoning": {
-        "thinking": "جارٍ التفكير...",
-        "thoughtForFewSeconds": "فكر لبضع ثوانٍ",
-        "thoughtForSeconds": "فكر لمدة {duration} ثانية"
+        "thinking": "جارٍ التفكير",
+        "thoughtForFewSeconds": "تفكير",
+        "thoughtForSeconds": "تفكير"
       },
       "messageList": {
         "attachedResources": "الموارد المرفقة",

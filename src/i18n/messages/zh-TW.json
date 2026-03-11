@@ -1185,9 +1185,9 @@
         "running": "執行中"
       },
       "reasoning": {
-        "thinking": "思考中...",
-        "thoughtForFewSeconds": "思考了幾秒",
-        "thoughtForSeconds": "思考了 {duration} 秒"
+        "thinking": "思考中",
+        "thoughtForFewSeconds": "思考",
+        "thoughtForSeconds": "思考"
       },
       "messageList": {
         "attachedResources": "附加資源",

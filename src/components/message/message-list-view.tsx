@@ -169,7 +169,15 @@ export function MessageListView({
 
   const { threadItems, nonStreamingAdapted } = useMemo(() => {
     const allTurns = timelineTurns.map((item) => item.turn)
-    const allAdapted = adaptMessageTurns(allTurns, adapterText)
+    const streamingIndices = new Set<number>()
+    timelineTurns.forEach((item, i) => {
+      if (item.phase === "streaming") streamingIndices.add(i)
+    })
+    const allAdapted = adaptMessageTurns(
+      allTurns,
+      adapterText,
+      streamingIndices.size > 0 ? streamingIndices : undefined
+    )
 
     // Collect non-streaming adapted messages for plan extraction
     const nonStreaming = allAdapted.filter(

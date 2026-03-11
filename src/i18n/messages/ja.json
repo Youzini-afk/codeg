@@ -1185,9 +1185,9 @@
         "running": "実行中"
       },
       "reasoning": {
-        "thinking": "考え中...",
-        "thoughtForFewSeconds": "数秒間考えました",
-        "thoughtForSeconds": "{duration} 秒間考えました"
+        "thinking": "考え中",
+        "thoughtForFewSeconds": "考えた",
+        "thoughtForSeconds": "考えた"
       },
       "messageList": {
         "attachedResources": "添付リソース",

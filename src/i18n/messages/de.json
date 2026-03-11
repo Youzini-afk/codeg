@@ -1185,9 +1185,9 @@
         "running": "Läuft"
       },
       "reasoning": {
-        "thinking": "Denkt nach...",
-        "thoughtForFewSeconds": "Dachte einige Sekunden nach",
-        "thoughtForSeconds": "Dachte {duration} Sekunden nach"
+        "thinking": "Denkt nach",
+        "thoughtForFewSeconds": "Nachgedacht",
+        "thoughtForSeconds": "Nachgedacht"
       },
       "messageList": {
         "attachedResources": "Angehängte Ressourcen",

@@ -603,7 +603,8 @@ function buildToolResultMap(
  */
 export function adaptMessageTurn(
   turn: MessageTurn,
-  text: AdapterMessageText
+  text: AdapterMessageText,
+  isStreaming: boolean = false
 ): AdaptedMessage {
   const adaptedContent: AdaptedContentPart[] = []
   const resultMap = buildToolResultMap(turn.blocks)
@@ -703,6 +704,14 @@ export function adaptMessageTurn(
     }
   }
 
+  // Mark the last reasoning block as streaming if the turn is actively streaming
+  if (isStreaming) {
+    const last = adaptedContent[adaptedContent.length - 1]
+    if (last?.type === "reasoning") {
+      last.isStreaming = true
+    }
+  }
+
   const userSplit =
     turn.role === "user"
       ? splitUserTextAndResources(adaptedContent, text.attachedResources)
@@ -730,9 +739,12 @@ export function adaptMessageTurn(
  */
 export function adaptMessageTurns(
   turns: MessageTurn[],
-  text: AdapterMessageText
+  text: AdapterMessageText,
+  streamingIndices?: Set<number>
 ): AdaptedMessage[] {
-  return turns.map((turn) => adaptMessageTurn(turn, text))
+  return turns.map((turn, i) =>
+    adaptMessageTurn(turn, text, streamingIndices?.has(i) ?? false)
+  )
 }
 
 /**

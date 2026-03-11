@@ -1185,9 +1185,9 @@
         "running": "실행 중"
       },
       "reasoning": {
-        "thinking": "생각 중...",
-        "thoughtForFewSeconds": "몇 초 동안 생각했습니다",
-        "thoughtForSeconds": "{duration}초 동안 생각했습니다"
+        "thinking": "생각 중",
+        "thoughtForFewSeconds": "생각함",
+        "thoughtForSeconds": "생각함"
       },
       "messageList": {
         "attachedResources": "첨부된 리소스",
