@@ -15,6 +15,7 @@ import { toast } from "sonner"
 import { disposeTauriListener } from "@/lib/tauri-listener"
 import { useFolderContext } from "@/contexts/folder-context"
 import { useTabContext } from "@/contexts/tab-context"
+import { useSessionStats } from "@/contexts/session-stats-context"
 import { cn } from "@/lib/utils"
 import { useConnectionLifecycle } from "@/hooks/use-connection-lifecycle"
 import { MessageListView } from "@/components/message/message-list-view"
@@ -140,6 +141,7 @@ const ConversationTabView = memo(function ConversationTabView({
   const sharedT = useTranslations("Folder.chat.shared")
   const { folder, folderId, refreshConversations } = useFolderContext()
   const { bindConversationTab } = useTabContext()
+  const { setSessionStats } = useSessionStats()
   const {
     acknowledgePersistedDetail,
     appendOptimisticTurn,
@@ -200,6 +202,12 @@ const ConversationTabView = memo(function ConversationTabView({
     error: detailError,
     refetch: refetchConversationDetail,
   } = useDbMessageDetail(effectiveConversationId)
+
+  useEffect(() => {
+    if (!isActive) return
+    setSessionStats(detail?.session_stats ?? null)
+  }, [detail?.session_stats, isActive, setSessionStats])
+
   const externalId = detail?.summary.external_id ?? undefined
   const draftStorageKey = useMemo(() => {
     if (dbConversationId != null) {
