@@ -23,10 +23,17 @@ una sola aplicación de escritorio, con agregación de sesiones, desarrollo
 paralelo con `git worktree`, gestión de MCP/Skills y flujo integrado de
 Git/archivos/terminal.
 
+## Interfaz principal
+
 ![Codeg Light](../images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](../images/main-dark.png#gh-dark-mode-only)
 
-> Versión actual: `v0.0.x` (iteración rápida)
+## Vista de mosaico de sesiones
+
+![Codeg Light](../images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](../images/main2-dark.png#gh-dark-mode-only)
+
+> Versión actual: `v0.1.x` (iteración rápida)
 
 ## Puntos clave
 

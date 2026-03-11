@@ -23,10 +23,17 @@ werden in einer Desktop-App zusammengeführt: mit Sitzungsaggregation,
 paralleler `git worktree`-Entwicklung, MCP/Skills-Verwaltung und integriertem
 Git/Datei/Terminal-Workflow.
 
+## Hauptoberfläche
+
 ![Codeg Light](../images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](../images/main-dark.png#gh-dark-mode-only)
 
-> Aktuelle Version: `v0.0.x` (schnelle Iteration)
+## Sitzungskachelansicht
+
+![Codeg Light](../images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](../images/main2-dark.png#gh-dark-mode-only)
+
+> Aktuelle Version: `v0.1.x` (schnelle Iteration)
 
 ## Highlights
 

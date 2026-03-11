@@ -23,10 +23,17 @@ CLI dans une application desktop avec agrégation des sessions, développement
 parallèle via `git worktree`, gestion MCP/Skills et workflow intégré
 Git/fichiers/terminal.
 
+## Interface principale
+
 ![Codeg Light](../images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](../images/main-dark.png#gh-dark-mode-only)
 
-> Version actuelle : `v0.0.x` (itération rapide)
+## Affichage en tuiles des sessions
+
+![Codeg Light](../images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](../images/main2-dark.png#gh-dark-mode-only)
+
+> Version actuelle : `v0.1.x` (itération rapide)
 
 ## Points forts
 

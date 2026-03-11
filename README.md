@@ -23,10 +23,15 @@ It unifies local AI coding agents (Claude Code, Codex CLI, OpenCode, Gemini CLI,
 etc.) in one desktop app with session aggregation, parallel `git worktree`
 development, MCP/Skills management, and integrated Git/file/terminal workflows.
 
+## Main Interface
 ![Codeg Light](./docs/images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](./docs/images/main-dark.png#gh-dark-mode-only)
 
-> Current status: `v0.0.x` (fast iteration, suitable for early adopters)
+## Session tile display
+![Codeg Light](./docs/images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](./docs/images/main2-dark.png#gh-dark-mode-only)
+
+> Current status: `v0.1.x` (fast iteration, suitable for early adopters)
 
 ## Highlights
 

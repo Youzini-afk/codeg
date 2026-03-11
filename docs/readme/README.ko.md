@@ -19,10 +19,17 @@
 Codeg(Code Generation)는 멀티 Agent를 위한 엔터프라이즈급 코드 생성 워크스페이스입니다.
 Claude Code, Codex CLI, OpenCode, Gemini CLI 등 로컬 AI 코딩 Agent를 하나의 데스크톱 앱으로 통합하여 세션 집계, 병렬 `git worktree` 개발, MCP/Skills 관리, Git/파일/터미널 통합 워크플로를 제공합니다.
 
+## 메인 인터페이스
+
 ![Codeg Light](../images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](../images/main-dark.png#gh-dark-mode-only)
 
-> 현재 버전: `v0.0.x` (빠르게 개선 중)
+## 세션 타일 표시
+
+![Codeg Light](../images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](../images/main2-dark.png#gh-dark-mode-only)
+
+> 현재 버전: `v0.1.x` (빠르게 개선 중)
 
 ## 핵심 기능
 

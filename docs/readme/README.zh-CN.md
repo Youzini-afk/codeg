@@ -19,10 +19,17 @@
 Codeg（Code Generation）是一个面向多 Agent 的企业级代码生成工作台。
 它把 Claude Code、Codex CLI、OpenCode、Gemini CLI 等本地 AI 编码代理统一到一个桌面应用中，支持会话聚合、并行 `git worktree` 开发、MCP/Skills 管理，以及 Git/文件/终端一体化工作流。
 
+## 主界面
+
 ![Codeg Light](../images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](../images/main-dark.png#gh-dark-mode-only)
 
-> 当前版本：`v0.0.x`（快速迭代中）
+## 会话平铺显示
+
+![Codeg Light](../images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](../images/main2-dark.png#gh-dark-mode-only)
+
+> 当前版本：`v0.1.x`（快速迭代中）
 
 ## 核心亮点
 

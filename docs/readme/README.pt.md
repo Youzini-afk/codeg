@@ -22,10 +22,17 @@ Ele unifica agentes locais como Claude Code, Codex CLI, OpenCode e Gemini CLI
 em um único app desktop com agregação de sessões, desenvolvimento paralelo com
 `git worktree`, gestão de MCP/Skills e fluxo integrado de Git/arquivos/terminal.
 
+## Interface principal
+
 ![Codeg Light](../images/main-light.png#gh-light-mode-only)
 ![Codeg Dark](../images/main-dark.png#gh-dark-mode-only)
 
-> Versão atual: `v0.0.x` (iteração rápida)
+## Exibição em mosaico de sessões
+
+![Codeg Light](../images/main2-light.png#gh-light-mode-only)
+![Codeg Dark](../images/main2-dark.png#gh-dark-mode-only)
+
+> Versão atual: `v0.1.x` (iteração rápida)
 
 ## Destaques
 
